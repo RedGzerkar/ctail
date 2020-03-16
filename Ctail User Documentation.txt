@@ -1,0 +1,63 @@
+
+
+
+
+
+
+                                   Ctail
+
+                      	     Instruction Manual
+
+
+The compile command has to be issued with ctail.c being in the same directory as the terminal. And all
+the other commands have to issued with the terminal being in the same directory as the compiled ctail.  
+Before this program can run it must be compiled into an executable file. Using the Linux virtual machine, the below command should compile the program
+	gcc ctail.c -o ctail
+NAME          
+       ctail - output the last part of files
+SYNOPSIS          
+       ./ctail [file]…[option]…
+
+
+DESCRIPTION         
+	
+	Print the last 200 chars of each FILE to standard output. With no FILE given output to standard output 200 chars from logfile.txt.
+
+	There are 4 optional arguments that can be provided which are file path, -n and -L
+
+./ctail is the initial command needed to call the    program. If just this command is called then it will print 200 chars from logfile.txt
+	Example: ./ctail
+
+	-n [+int]
+	This prints the last [+int] chars from the file logfile.txt. After -n the next argument must be a positive integer.
+	Example: ./ctail -n 20 
+	This command will print last 20 characters from logfile.txt
+
+File path
+	This prints the last 200 chars from [File path] instead of logfile.txt. The file path needs to be specified right after ./ctail.
+	Example: ./ctail test.txt
+	This command will print the last 200 chars from test.txt
+
+Both -n and file path can be used together to print [+int] chars from file path
+	Example: ./ctail test.txt -n 20
+	This command will print the last 20 chars from test.txt
+
+-L
+	This turns the program into line mode where it prints lines instead of chars. This argument must be provided right after ./ctail. And it prints the last 10 lines from logfile.txt
+	Example: ./ctail -L
+	This command will print the last 10 lines from logfile.txt
+
+-L can be combined with the previous commands to print lines from file path and print n number of files.
+	Example: ./ctail test.txt -L
+	This command will print the last 10 lines from test.txt
+	Example: ./ctail -L -n 20
+	This command will print the last 20 lines from logfile.txt
+	Example: ./ctail test.txt -L -n 20
+	This command will print the last 20 lines from test.txt
+
+If the -L argument is provided, and the file doesn’t have as many lines as the program is trying to print it will print the whole file.
+
+
+The inputs must be provided in the above-mentioned format. If the input isn’t structured in that way the program will default into seagmentation error. And if the input file doesn’t exist then the file will say “File doesn’t exist”.
+
+Assumptions: The code considers '\0' part of the given chars or lines
